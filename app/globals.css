@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary emerald colors - used ONLY for CTAs, links, focused states, small highlights */
+  --primary: 22 163 74;              /* #16A34A */
+  --primary-hover: 21 128 61;        /* #15803D */
+  --primary-soft: 220 252 231;       /* #DCFCE7 */
+  
+  /* Background colors - near-white + light sage tint */
+  --bg: 248 250 249;                 /* #F8FAF9 */
+  --bg-subtle: 241 245 243;          /* #F1F5F3 */
+  
+  /* Text colors - deep slate / graphite */
+  --text: 15 23 42;                  /* #0F172A */
+  --text-muted: 71 85 105;           /* #475569 */
+  
+  /* Border colors - cool gray separators */
+  --border: 226 232 240;            /* #E2E8F0 */
+  
+  /* Card border - warm golden for card elements */
+  --border-card: 200 180 150;        /* #C8B496 - very subtle warm gold */
+  --card-bg: 233 237 235 / 0.5;            /* #E9EDEB */
+  
+  /* Accent color - muted gold (sparingly used for tiny accent lines/icons only) */
+  --accent-gold: 200 162 74;         /* #C8A24A */
+  
+  /* Shadows */
+  --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark mode - applied when .dark class is on html element */
+.dark {
+  /* Primary emerald colors - same vibrant emerald/jade tone */
+  --primary: 22 163 74;              /* #16A34A */
+  --primary-hover: 21 128 61;        /* #15803D */
+  --primary-soft: 26 58 46;          /* #1A3A2E */
+  
+  /* Dark background - dark jade green */
+  --bg: 15 31 26;                    /* #0F1F1A */
+  --bg-subtle: 27 42 43;             /* #1B2B25 */
+  
+  /* Light text - soft off-white for readability */
+  --text: 241 245 249;               /* #F1F5F9 */
+  --text-muted: 148 163 184;         /* #94A3B8 */
+  
+  /* Cool gray separators - visible but subtle */
+  --border: 51 65 85;                /* #334155 */
+  
+  /* Card border - warmer golden for dark mode */
+  --border-card: 180 160 130;        /* #B4A082 - subtle warm gold */
+  --card-bg: 37 57 57 / 0.5;          /* #253939 */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ThemeTokens
+ * 
+ * Usage:
+ * - primary: CTAs, links, focused states, small highlights only
+ * - bg: Main app background (near-white + sage tint in light, dark jade green in dark)
+ * - bg-subtle: Section panels, subtle surfaces
+ * - text: Default text (deep slate in light, soft off-white in dark)
+ * - text-muted: Secondary text (graphite in light, soft gray in dark)
+ * - border: Separators and dividers (cool gray)
+ * - border-card: Warm golden borders for card elements
+ * - card-bg: Background color for card elements (separate from bg-subtle for better contrast)
+ * - accent-gold: Optional micro-accent only (tiny 1px underline, icons)
+ */
+@theme {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-geist);
+  
+  /* Primary colors - available as bg-primary, text-primary, border-primary, etc. */
+  --color-primary: rgb(var(--primary));
+  --color-primary-hover: rgb(var(--primary-hover));
+  --color-primary-soft: rgb(var(--primary-soft));
+  
+  /* Background colors - available as bg-bg, bg-bg-subtle, bg-card-bg */
+  --color-bg: rgb(var(--bg));
+  --color-bg-subtle: rgb(var(--bg-subtle));
+  --color-card-bg: rgb(var(--card-bg));
+  
+  /* Text colors - available as text-text, text-text-muted */
+  --color-text: rgb(var(--text));
+  --color-text-muted: rgb(var(--text-muted));
+  
+  /* Border - available as border-border */
+  --color-border: rgb(var(--border));
+  
+  /* Card border - available as border-border-card */
+  --color-border-card: rgb(var(--border-card));
+  
+  /* Accent - available as text-accent-gold, border-accent-gold, etc. */
+  --color-accent-gold: rgb(var(--accent-gold));
+  
+  /* Shadow */
+  --shadow-soft: var(--shadow-soft);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-bg text-text antialiased;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* Subtle background pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.01) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* Subtle noise overlay for hero background */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
