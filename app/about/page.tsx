@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { Card } from "@/components/ui/card";
@@ -17,26 +18,45 @@ export default function AboutPage() {
     <PageTransition>
       <Container className="py-16 sm:py-24">
         <FadeIn>
-          <div className="mb-16 max-w-3xl">
+          <div className="mb-16">
             <h1 className="mb-6 text-4xl font-semibold tracking-tight text-text sm:text-5xl">
               About
             </h1>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-text-muted leading-relaxed mb-6">
-                I&apos;m a {siteMetadata.role.toLowerCase()} focused on building products that solve
-                real problems. My work sits at the intersection of design, engineering, and
-                product thinking—where clean interfaces meet thoughtful functionality.
-              </p>
-              <p className="text-lg text-text-muted leading-relaxed mb-6">
-                I believe the best products are those that feel effortless to use while
-                delivering measurable value. Whether it&apos;s a data visualization that helps
-                someone make a decision, or an interface that simplifies a complex workflow,
-                I aim to create experiences that are both beautiful and purposeful.
-              </p>
-              <p className="text-lg text-text-muted leading-relaxed">
-                {siteMetadata.location && `Based in ${siteMetadata.location}. `}
-                Always learning, always building.
-              </p>
+            <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+              <div className="prose prose-lg max-w-none lg:max-w-xl">
+                <p className="text-lg text-text-muted leading-relaxed mb-6">
+                  I’m a software engineer with a strong frontend focus, building
+                  thoughtful, scalable interfaces that make complex problems
+                  feel simple. I care deeply about clean code, clear UX, and
+                  products that are intuitive from the first interaction.
+                </p>
+                <p className="text-lg text-text-muted leading-relaxed mb-6">
+                  I’ve worked across large codebases, led feature development,
+                  and collaborated closely with designers and stakeholders to
+                  ship reliable, well-tested software. I’m especially interested
+                  in data-driven interfaces, performance, and reusable component
+                  systems.
+                </p>
+                <p className="text-lg text-text-muted leading-relaxed mb-6">
+                  At the end of the day, I believe the best products feel
+                  effortless to use while delivering real value.
+                </p>
+                <p className="text-lg text-text-muted leading-relaxed">
+                  {siteMetadata.location &&
+                    `Based in ${siteMetadata.location}. `}
+                  Always learning, always building.
+                </p>
+              </div>
+              <div className="relative aspect-square w-full max-w-xs mx-auto lg:mx-auto lg:max-w-sm">
+                <Image
+                  src="/profile-pic.png"
+                  alt="Nicole Bush"
+                  fill
+                  className="rounded-lg object-cover border border-border-card/60 shadow-soft"
+                  priority
+                  sizes="(max-width: 500px) 100vw, 50vw"
+                />
+              </div>
             </div>
           </div>
         </FadeIn>
@@ -62,7 +82,9 @@ export default function AboutPage() {
         <FadeIn delay={0.2}>
           <div className="mt-16">
             <Card>
-              <h2 className="mb-4 text-2xl font-semibold text-text">Currently</h2>
+              <h2 className="mb-4 text-2xl font-semibold text-text">
+                Currently
+              </h2>
               <ul className="space-y-2 text-text-muted">
                 <li>• Building products that make complex data accessible</li>
                 <li>• Exploring the intersection of AI and user experience</li>
@@ -75,4 +97,3 @@ export default function AboutPage() {
     </PageTransition>
   );
 }
-

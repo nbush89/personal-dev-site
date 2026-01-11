@@ -12,6 +12,7 @@ interface ButtonProps {
   target?: string;
   rel?: string;
   disabled?: boolean;
+  download?: boolean;
 }
 
 export function Button({
@@ -24,6 +25,7 @@ export function Button({
   target,
   rel,
   disabled,
+  download,
 }: ButtonProps) {
   const baseStyles =
     "inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-bg disabled:opacity-50 disabled:pointer-events-none";
@@ -46,7 +48,15 @@ export function Button({
           className={classes}
           target={target || "_blank"}
           rel={rel || "noopener noreferrer"}
+          download={download}
         >
+          {children}
+        </a>
+      );
+    }
+    if (download) {
+      return (
+        <a href={href} className={classes} download>
           {children}
         </a>
       );

@@ -57,8 +57,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <Container className="py-16 sm:py-24">
           {/* Header */}
           <FadeIn>
-            <div className="mb-12 grid gap-8 lg:grid-cols-2 lg:items-start">
-              <div>
+            <div className="mb-12 grid gap-8 lg:grid-cols-2 lg:items-center">
+              <div className="flex flex-col justify-center">
                 <div className="mb-6 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <Badge key={tag} variant="default">
@@ -70,71 +70,103 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   {project.title}
                 </h1>
                 <p className="text-lg text-text-muted">{project.summary}</p>
+                {/* Links */}
+                {(project.links.live ||
+                  project.links.repo ||
+                  project.links.demo) && (
+                  <FadeIn delay={0.1}>
+                    <div className="mb-12 mt-8 flex flex-wrap gap-4">
+                      {project.links.live && (
+                        <Button
+                          href={project.links.live}
+                          variant="primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Live
+                        </Button>
+                      )}
+                      {project.links.repo && (
+                        <Button
+                          href={project.links.repo}
+                          variant="ghost"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Code
+                        </Button>
+                      )}
+                      {project.links.demo && (
+                        <Button
+                          href={project.links.demo}
+                          variant="ghost"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Demo
+                        </Button>
+                      )}
+                    </div>
+                  </FadeIn>
+                )}
               </div>
               {project.slug === "home-property-tax-calculator" && (
-                <div className="group relative overflow-hidden rounded-lg border border-border-card/60 bg-card-bg transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/10 hover:border-border-card/80">
-                  <Image
-                    src="/property-tax-homepage.png"
-                    alt="Home Property Tax Calculator homepage screenshot"
-                    width={800}
-                    height={600}
-                    className="h-auto w-full object-cover"
-                    priority
-                  />
+                <div className="flex items-center justify-center">
+                  <div className="group relative overflow-hidden rounded-lg border border-border-card/60 bg-card-bg transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/10 hover:border-border-card/80 w-full">
+                    <Image
+                      src="/property-tax-homepage.png"
+                      alt="Home Property Tax Calculator homepage screenshot"
+                      width={800}
+                      height={600}
+                      className="h-auto w-full object-cover"
+                      priority
+                    />
+                  </div>
                 </div>
               )}
             </div>
           </FadeIn>
 
-          {/* Links */}
-          {(project.links.live || project.links.repo || project.links.demo) && (
-            <FadeIn delay={0.1}>
-              <div className="mb-12 flex flex-wrap gap-4">
-                {project.links.live && (
-                  <Button href={project.links.live} variant="primary" target="_blank" rel="noopener noreferrer">
-                    View Live
-                  </Button>
-                )}
-                {project.links.repo && (
-                  <Button href={project.links.repo} variant="ghost" target="_blank" rel="noopener noreferrer">
-                    View Code
-                  </Button>
-                )}
-                {project.links.demo && (
-                  <Button href={project.links.demo} variant="ghost" target="_blank" rel="noopener noreferrer">
-                    Demo
-                  </Button>
-                )}
-              </div>
-            </FadeIn>
-          )}
-
           {/* Sections */}
           <div className="mb-16 space-y-12">
             <FadeIn delay={0.2}>
               <section>
-                <h2 className="mb-4 text-2xl font-semibold text-text">Problem</h2>
-                <p className="text-text-muted leading-relaxed">{project.sections.problem}</p>
+                <h2 className="mb-4 text-2xl font-semibold text-text">
+                  Problem
+                </h2>
+                <p className="text-text-muted leading-relaxed">
+                  {project.sections.problem}
+                </p>
               </section>
             </FadeIn>
 
             <FadeIn delay={0.3}>
               <section>
-                <h2 className="mb-4 text-2xl font-semibold text-text">Approach</h2>
-                <p className="text-text-muted leading-relaxed">{project.sections.approach}</p>
+                <h2 className="mb-4 text-2xl font-semibold text-text">
+                  Approach
+                </h2>
+                <p className="text-text-muted leading-relaxed">
+                  {project.sections.approach}
+                </p>
               </section>
             </FadeIn>
 
             <FadeIn delay={0.4}>
               <section>
-                <h2 className="mb-4 text-2xl font-semibold text-text">Key Features</h2>
-                <p className="text-text-muted leading-relaxed">{project.sections.features}</p>
+                <h2 className="mb-4 text-2xl font-semibold text-text">
+                  Key Features
+                </h2>
+                <p className="text-text-muted leading-relaxed">
+                  {project.sections.features}
+                </p>
               </section>
             </FadeIn>
 
             <FadeIn delay={0.5}>
               <section>
-                <h2 className="mb-4 text-2xl font-semibold text-text">Tech Stack</h2>
+                <h2 className="mb-4 text-2xl font-semibold text-text">
+                  Tech Stack
+                </h2>
                 <div className="flex flex-wrap gap-2">
                   {project.techStack.map((tech) => (
                     <Badge key={tech} variant="primary">
@@ -155,7 +187,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </h2>
                 <div className="grid gap-6 md:grid-cols-2">
                   {relatedProjects.map((relatedProject) => (
-                    <ProjectCard key={relatedProject.slug} project={relatedProject} />
+                    <ProjectCard
+                      key={relatedProject.slug}
+                      project={relatedProject}
+                    />
                   ))}
                 </div>
               </section>
@@ -166,4 +201,3 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     </>
   );
 }
-

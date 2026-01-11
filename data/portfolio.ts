@@ -109,15 +109,15 @@ export const projects: Project[] = [
 export const capabilities = [
   {
     title: "Frontend & UX",
-    description: "Building responsive, accessible interfaces with modern frameworks and thoughtful design systems.",
+    description: "Designing clean, accessible interfaces with React and modern design systems—focused on clarity, performance, and long-term maintainability.",
   },
   {
     title: "Data-Driven Interfaces",
-    description: "Transforming complex data into clear, interactive visualizations that help users make decisions.",
+    description: "Turning complex data into clear, interactive visualizations that help people understand trends and make better decisions.",
   },
   {
     title: "Product Thinking",
-    description: "Focusing on user needs, measurable outcomes, and iterative improvement through data and feedback.",
+    description: "Approaching problems with user needs and measurable outcomes in mind, iterating through feedback, data, and real-world usage.",
   },
 ];
 
@@ -139,4 +139,150 @@ export const principles = [
     description: "Success is defined by outcomes, not just outputs.",
   },
 ];
+
+// Resume Types
+export type Experience = {
+  company: string;
+  role: string;
+  start: string;
+  end: string;
+  location?: string;
+  highlights: string[];
+  tech?: string[];
+};
+
+export type Education = {
+  school: string;
+  program: string;
+  start?: string;
+  end?: string;
+  note?: string;
+};
+
+export type ResumeData = {
+  name: string;
+  title: string;
+  location?: string;
+  email?: string;
+  phone?: string;
+  linkedIn?: string;
+  summary?: string;
+  experience: Experience[];
+  education: Education[];
+  skills: string[];
+};
+
+export const resume: ResumeData = {
+  name: "Nicole Bush",
+  title: "Lead Software Engineer",
+  location: "Rome, Italy",
+  email: "nicole.bush000@gmail.com",
+  phone: "810-986-9923",
+  linkedIn: "https://linkedin.com/in/nbush89",
+  summary:
+    "Frontend-focused software engineer with expertise in React, TypeScript, and building scalable applications. Passionate about creating thoughtful interfaces that solve real problems, with a strong emphasis on code quality, testing, and user experience.",
+  experience: [
+    {
+      company: "Booz Allen Hamilton",
+      role: "Senior Software Engineer",
+      start: "Aug 2022",
+      end: "Present",
+      location: "Remote",
+      highlights: [
+        "Led development of a production React + TypeScript application supporting complex, rule-driven workflows for a large enterprise client.",
+        "Designed and implemented backend API endpoints backed by PostgreSQL, enabling flexible business logic and data-driven decision flows.",
+        "Built a scalable business rules engine using state machines and React Context to manage complex application states.",
+        "Created a reusable Material UI–based design system, improving UI consistency and development speed across features.",
+        "Improved application quality by expanding unit and integration test coverage from ~50% to ~75% using Jest and React Testing Library.",
+        "Introduced modern tooling and libraries (react-hook-form, zod, formatters, shared component libraries) to improve developer experience and form reliability.",
+        "Collaborated closely with designers, product owners, and QA in an Agile/Scrum environment, contributing to sprint planning and technical decision-making.",
+      ],
+      tech: [
+        "React",
+        "TypeScript",
+        "PostgreSQL",
+        "TypeORM",
+        "Material UI",
+        "Jest",
+        "React Testing Library",
+        "Zod",
+        "react-hook-form",
+      ],
+    },
+    {
+      company: "Autobooks",
+      role: "Software Engineer",
+      start: "Aug 2020",
+      end: "Jun 2022",
+      location: "Detroit, MI",
+      highlights: [
+        "Developed and maintained a large-scale enterprise React + TypeScript application powering digital payment and invoicing workflows.",
+        "Built modular, reusable UI components and a shared Material UI theme, improving consistency across multiple product surfaces.",
+        "Designed and maintained GraphQL schemas with strong TypeScript typing to ensure safe, predictable data access.",
+        "Refactored over 120 legacy class components into modern functional components with hooks, reducing complexity and improving maintainability.",
+        "Expanded end-to-end test coverage from ~20 tests to 80+ automated tests using Selenium Protractor.",
+        "Collaborated with cross-functional teams to ship features used by financial institutions and small businesses nationwide.",
+      ],
+      tech: [
+        "React",
+        "TypeScript",
+        "GraphQL",
+        "Material UI",
+        "Selenium",
+        "Protractor",
+      ],
+    },
+    {
+      company: "Benzinga",
+      role: "Front End Engineer",
+      start: "Mar 2020",
+      end: "Jul 2020",
+      location: "Detroit, MI",
+      highlights: [
+        "Built custom WordPress content blocks using PHP, Laravel patterns, and Advanced Custom Fields (ACF).",
+        "Translated Figma wireframes into responsive, accessible frontend components.",
+        "Worked closely with editorial and product teams to support high-traffic content workflows.",
+        "Performed manual QA and cross-browser testing to ensure visual and functional consistency.",
+      ],
+      tech: ["WordPress", "PHP", "Laravel", "Figma", "ACF"],
+    },
+  ],
+  education: [
+    {
+      school: "Grand Circus",
+      program: "Front End Coding Bootcamp",
+      start: "Jan 2020",
+      end: "Mar 2020",
+    },
+    {
+      school: "Eastern Michigan University",
+      program: "B.S. Psychology and Biology",
+      end: "Apr 2016",
+    },
+  ],
+  skills: [
+    "React",
+    "Node.js",
+    "JavaScript",
+    "TypeScript",
+    "Next.js",
+    "APIs",
+    "TypeORM",
+    "PostgreSQL",
+    "React Testing Library",
+    "Material UI",
+    "Agile/Scrum",
+    "Technical Documentation",
+    "Jira/Confluence",
+    "Git",
+    "Jest",
+    "Azure DevOps",
+    "Docker",
+    "Zod",
+    "Figma",
+    "CSS",
+    "HTML",
+    "Elasticsearch",
+  ],
+};
 
