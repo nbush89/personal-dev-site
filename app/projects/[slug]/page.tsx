@@ -4,6 +4,7 @@ import { Container } from "@/components/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ProjectCard } from "@/components/project-card";
+import { ProjectGallery } from "@/components/project-gallery";
 import { FadeIn } from "@/components/motion/fade-in";
 import { PageTransition } from "@/components/motion/page-transition";
 import { projects } from "@/data/portfolio";
@@ -110,14 +111,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </FadeIn>
                 )}
               </div>
-              {project.slug === "home-property-tax-calculator" && (
+              {project.image && (
                 <div className="flex items-center justify-center">
                   <div className="group relative overflow-hidden rounded-lg border border-border-card/60 bg-card-bg transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/10 hover:border-border-card/80 w-full">
                     <Image
-                      src="/property-tax-homepage.png"
-                      alt="Home Property Tax Calculator homepage screenshot"
-                      width={800}
-                      height={600}
+                      src={project.image.src}
+                      alt={`${project.title} screenshot`}
+                      width={project.image.width}
+                      height={project.image.height}
                       className="h-auto w-full object-cover"
                       priority
                     />
@@ -127,6 +128,62 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </FadeIn>
 
+          {/* Stats */}
+          {project.stats && project.stats.length > 0 && (
+            <FadeIn delay={0.15}>
+              <div className="mb-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {project.stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-lg border border-border-card/60 bg-card-bg p-4 text-center"
+                  >
+                    <div className="text-2xl font-semibold text-text sm:text-3xl">
+                      {stat.value}
+                    </div>
+                    <div className="mt-1 text-sm text-text-muted">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+          )}
+
+          {/* Demo Video */}
+          {project.video && (project.video.embedUrl || project.video.src) && (
+            <FadeIn delay={0.18}>
+              <section className="mb-16">
+                <h2 className="mb-4 text-2xl font-semibold text-text">Demo</h2>
+                <div className="overflow-hidden rounded-lg border border-border-card/60 bg-card-bg">
+                  {project.video.embedUrl ? (
+                    <div
+                      className="relative w-full"
+                      style={{ aspectRatio: "16 / 9" }}
+                    >
+                      <iframe
+                        src={project.video.embedUrl}
+                        title={`${project.title} demo`}
+                        className="absolute inset-0 h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : (
+                    <video
+                      controls
+                      preload="metadata"
+                      poster={project.video.poster}
+                      className="h-auto w-full"
+                    >
+                      <source src={project.video.src} />
+                      Your browser does not support the video tag.
+                    </video>
+                  )}
+                </div>
+              </section>
+            </FadeIn>
+          )}
+
           {/* Sections */}
           <div className="mb-16 space-y-12">
             <FadeIn delay={0.2}>
@@ -134,9 +191,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <h2 className="mb-4 text-2xl font-semibold text-text">
                   Problem
                 </h2>
-                <p className="text-text-muted leading-relaxed">
-                  {project.sections.problem}
-                </p>
+                {project.sections.problem.split("\n\n").map((para, i) => (
+                  <p
+                    key={i}
+                    className="text-text-muted leading-relaxed [&:not(:last-child)]:mb-4"
+                  >
+                    {para}
+                  </p>
+                ))}
               </section>
             </FadeIn>
 
@@ -145,9 +207,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <h2 className="mb-4 text-2xl font-semibold text-text">
                   Approach
                 </h2>
-                <p className="text-text-muted leading-relaxed">
-                  {project.sections.approach}
-                </p>
+                {project.sections.approach.split("\n\n").map((para, i) => (
+                  <p
+                    key={i}
+                    className="text-text-muted leading-relaxed [&:not(:last-child)]:mb-4"
+                  >
+                    {para}
+                  </p>
+                ))}
               </section>
             </FadeIn>
 
@@ -156,11 +223,33 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <h2 className="mb-4 text-2xl font-semibold text-text">
                   Key Features
                 </h2>
-                <p className="text-text-muted leading-relaxed">
-                  {project.sections.features}
-                </p>
+                <ul className="space-y-3">
+                  {project.sections.features.map((feature, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-text-muted leading-relaxed"
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </section>
             </FadeIn>
+
+            {project.gallery && project.gallery.length > 0 && (
+              <FadeIn delay={0.45}>
+                <section>
+                  <h2 className="mb-4 text-2xl font-semibold text-text">
+                    Gallery
+                  </h2>
+                  <ProjectGallery
+                    images={project.gallery}
+                    title={project.title}
+                  />
+                </section>
+              </FadeIn>
+            )}
 
             <FadeIn delay={0.5}>
               <section>

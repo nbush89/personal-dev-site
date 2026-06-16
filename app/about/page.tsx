@@ -25,21 +25,25 @@ export default function AboutPage() {
             <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
               <div className="prose prose-lg max-w-none lg:max-w-xl">
                 <p className="text-lg text-text-muted leading-relaxed mb-6">
-                  I’m a software engineer with a strong frontend focus, building
-                  thoughtful, scalable interfaces that make complex problems
-                  feel simple. I care deeply about clean code, clear UX, and
-                  products that are intuitive from the first interaction.
+                  I’m a full-stack engineer and technical lead with 6+ years
+                  building production-grade applications across fintech and
+                  government defense. I tend to operate at the architectural
+                  level—defining API contracts, designing data schemas, and
+                  taking complex, ambiguous features from requirements all the
+                  way through deployment.
                 </p>
                 <p className="text-lg text-text-muted leading-relaxed mb-6">
-                  I’ve worked across large codebases, led feature development,
-                  and collaborated closely with designers and stakeholders to
-                  ship reliable, well-tested software. I’m especially interested
-                  in data-driven interfaces, performance, and reusable component
-                  systems.
+                  I work comfortably across the stack, from React and Next.js
+                  front ends to Python and Node back ends, with the testing,
+                  observability, and infrastructure that keep systems reliable.
+                  I’ve led cross-team integrations, mentored other engineers,
+                  and owned features end to end with minimal oversight.
                 </p>
                 <p className="text-lg text-text-muted leading-relaxed mb-6">
-                  At the end of the day, I believe the best products feel
-                  effortless to use while delivering real value.
+                  Lately I treat AI as a first-class engineering tool—using
+                  Claude and OpenAI to pressure-test architecture, surface edge
+                  cases earlier, and build structured classification and
+                  extraction pipelines that run in production.
                 </p>
                 <p className="text-lg text-text-muted leading-relaxed">
                   {siteMetadata.location &&
@@ -86,9 +90,9 @@ export default function AboutPage() {
                 Currently
               </h2>
               <ul className="space-y-2 text-text-muted">
-                <li>• Building products that make complex data accessible</li>
-                <li>• Exploring the intersection of AI and user experience</li>
-                <li>• Contributing to open-source projects</li>
+                <li>• Building Mineral Risk Analytics—AI-driven EV battery supply-chain risk scoring as technical co-founder and sole engineer</li>
+                <li>• Operating a live, three-state Property Tax Calculator serving ~1,200 active users every 90 days</li>
+                <li>• Leading platform and feature work at Booz Allen Hamilton, with AI integrated into the engineering workflow</li>
               </ul>
             </Card>
           </div>

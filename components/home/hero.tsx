@@ -38,7 +38,7 @@ export function Hero() {
             {/* Eyebrow Pill */}
             <HeroItem>
               <div className="mb-6 inline-flex items-center rounded-full border border-border bg-bg/60 backdrop-blur-sm px-4 py-2 text-sm font-medium text-text-muted">
-                Software Developer
+                Tech Lead · Full Stack Engineer
               </div>
             </HeroItem>
 

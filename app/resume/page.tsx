@@ -10,7 +10,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Resume | Nicole Bush",
-  description: "Resume and work history for Nicole Bush, Lead Software Engineer specializing in React, TypeScript, and frontend development.",
+  description: "Resume and work history for Nicole Bush, Tech Lead and Full Stack Engineer specializing in React, TypeScript, Python, and AI-integrated systems.",
 };
 
 export default function ResumePage() {
@@ -31,7 +31,7 @@ export default function ResumePage() {
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button
-                href="/resume.pdf"
+                href="/Nicole_Bush_Resume.pdf"
                 variant="primary"
                 download
                 className="whitespace-nowrap"
@@ -39,7 +39,7 @@ export default function ResumePage() {
                 Download PDF
               </Button>
               <Button
-                href="/resume.pdf"
+                href="/Nicole_Bush_Resume.pdf"
                 variant="ghost"
                 target="_blank"
                 rel="noreferrer"

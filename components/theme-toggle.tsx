@@ -1,16 +1,29 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
+// Returns false on the server and during hydration, true afterward—the
+// React-recommended way to detect that the client has hydrated without a
+// setState-in-effect. This keeps the server and first client render identical.
+const subscribe = () => () => {};
+function useHydrated() {
+  return useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  );
+}
+
 export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
-  
-  // Use resolvedTheme to determine if theme is ready (only available after mount)
+  const hydrated = useHydrated();
+
   const isDark = resolvedTheme === "dark";
-  
-  // Show placeholder during SSR or before theme is resolved
-  if (!resolvedTheme) {
+
+  // Render a stable placeholder until hydrated to avoid a hydration mismatch.
+  if (!hydrated) {
     return (
       <div className="h-8 w-14 rounded-full border border-border bg-bg-subtle" aria-hidden="true" />
     );

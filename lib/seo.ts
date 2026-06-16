@@ -11,8 +11,8 @@ export function getDefaultMetadata(): Metadata {
     },
     description: siteMetadata.subhead,
     keywords: [
+      "lead software engineer",
       "frontend engineer",
-      "product designer",
       "web developer",
       "React",
       "Next.js",

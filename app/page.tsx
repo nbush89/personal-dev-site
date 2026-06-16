@@ -49,7 +49,7 @@ export default function Home() {
                   View Full Resume
                 </Button>
                 <Button
-                  href="/resume.pdf"
+                  href="/Nicole_Bush_Resume.pdf"
                   variant="ghost"
                   download
                   className="hidden sm:inline-flex"
